@@ -8,7 +8,7 @@ async fn main() {
     let mut mqttoptions = MqttOptions::new("ponger", "test.mosquitto.org", 1883);
     mqttoptions.set_keep_alive(Duration::from_secs(5));
 
-    let (mut client, mut eventloop) = AsyncClient::new(mqttoptions, 20);
+    let (client, mut eventloop) = AsyncClient::new(mqttoptions, 20);
     client.subscribe("hello/rumqtt/ping", QoS::AtMostOnce).await.unwrap();
 
     loop {
